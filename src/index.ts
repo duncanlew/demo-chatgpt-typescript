@@ -28,7 +28,7 @@ const userInterface = readline.createInterface({
   output: process.stdout,
 });
 
-userInterface.setPrompt("\n Send a message:\n");
+userInterface.setPrompt("\nSend a message:\n");
 userInterface.prompt();
 
 userInterface
@@ -37,24 +37,26 @@ userInterface
       role: "user",
       content: input,
     };
+
     messages.push(requestMessage);
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages,
     });
-    const responseMessage = completion.data.choices[0].message;
-    console.log(chalk.green(responseMessage?.content));
 
+    const responseMessage = completion.data.choices[0].message;
     if (responseMessage) {
+      console.log(chalk.green(responseMessage.content));
       messages.push({
-        role: responseMessage.role, 
-        content: responseMessage.content});
+        role: responseMessage.role,
+        content: responseMessage.content,
+      });
     }
 
-    console.log("You entered >> ", input);
-    console.log("Current messages:");
-    console.log(messages);
-    console.log("*************************");
+    // console.log("You entered >> ", input);
+    // console.log("Current messages:");
+    // console.log(messages);
+    // console.log("*************************");
     userInterface.prompt();
   })
   .on("close", () => {
