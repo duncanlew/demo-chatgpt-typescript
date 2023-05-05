@@ -1,6 +1,7 @@
 import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai";
 import * as readline from "readline";
 import * as dotenv from "dotenv";
+import chalk from "chalk";
 
 // *******************************************************
 dotenv.config();
@@ -27,7 +28,7 @@ const userInterface = readline.createInterface({
   output: process.stdout,
 });
 
-userInterface.setPrompt("Send a message:\n");
+userInterface.setPrompt("\n Send a message:\n");
 userInterface.prompt();
 
 userInterface
@@ -42,7 +43,7 @@ userInterface
       messages: messages,
     });
     const responseMessage = completion.data.choices[0].message;
-    console.log(responseMessage?.content);
+    console.log(chalk.green(responseMessage?.content));
 
     if (responseMessage) {
       messages.push({

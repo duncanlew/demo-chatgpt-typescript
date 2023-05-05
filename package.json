@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/duncanlew/demo-chatgpt-typescript#readme",
   "dependencies": {
+    "chalk": "^5.2.0",
     "dotenv": "^16.0.3",
     "openai": "^3.2.1"
   },
